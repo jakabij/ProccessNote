@@ -15,6 +15,7 @@ namespace DotNetProject
         int Memory { get; set; }
         DateTime RunningTIme { get; set; }
         DateTime StartTIme { get; set; }
+        string Comment { get; set; }
 
         public ProcessingProgram()
         {
