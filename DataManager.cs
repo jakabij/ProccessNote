@@ -10,16 +10,10 @@ namespace DotNetProject
     public class DataManager
     {
         string path = "processes.xml";
-        List<ProcessingProgram> PList = new List<ProcessingProgram>();
         XmlSerializer xml = new XmlSerializer(typeof(List<ProcessingProgram>));
 
-        public void WriteTOXml()
+        public void WriteTOXml(List<ProcessingProgram> PList)
         {
-            foreach(var process in Process.GetProcesses())
-            {
-                ProcessingProgram n = new ProcessingProgram(process.ProcessName,process.Id);
-                PList.Add(n);
-            }
             using (TextWriter tw = new StreamWriter(path))
             {
                 xml.Serialize(tw, PList);
@@ -40,6 +34,5 @@ namespace DotNetProject
                 Console.WriteLine(i.Name);
             }
         }
-
     }
 }

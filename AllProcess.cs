@@ -7,7 +7,7 @@ namespace DotNetProject
 {
     public class AllProcess
     {
-        public List<ProcessingProgram> ListOfProcesses { get; set; }
+        public List<ProcessingProgram> ListOfProcesses = new List<ProcessingProgram>();
 
         public AllProcess()
         {
