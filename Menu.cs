@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DotNetProject
 {
-    class MainMenu
+    class Menu
     {
         public void PrintMainMenu()
         {
@@ -19,10 +19,6 @@ namespace DotNetProject
         }
 
 
-        public void ListAllProcess()
-        {
-
-        }
 
     }
 }
