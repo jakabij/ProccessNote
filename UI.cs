@@ -8,7 +8,7 @@ namespace DotNetProject
     {
         public void ListAllDetailsById(int Pid)
         {
-
+            
         }
     }
 }
