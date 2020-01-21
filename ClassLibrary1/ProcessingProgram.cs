@@ -7,7 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace ClassLibrary1
 {
     [Serializable()]
-    public class ProcessingProgram : ISerializable
+    public class ProcessingProgram
     {
         public string Name { get; set; }
         public int PID { get; set; }
@@ -30,12 +30,5 @@ namespace ClassLibrary1
             
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("Name", Name);
-            info.AddValue("ProcessID", PID);
-            info.AddValue("StartTime", StartTIme);
-            
-        }
     }
 }

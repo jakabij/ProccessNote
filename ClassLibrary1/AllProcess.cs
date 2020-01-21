@@ -17,7 +17,6 @@ namespace ClassLibrary1
                 {
                     
                     ProcessingProgram program = new ProcessingProgram(process.ProcessName, process.Id, process.StartTime);
-                   
                     ListOfProcesses.Add(program);
                 }
                 catch (Exception)
