@@ -17,7 +17,7 @@ namespace ClassLibrary1
         public long Memory { get; set; }
         public double RunningTime { get; set; }
         public DateTime StartTime { get; set; }
-        public string Comment { get; set; }
+        public string Comment { get; set; } = "";
 
         public ProcessingProgram()
         { }
