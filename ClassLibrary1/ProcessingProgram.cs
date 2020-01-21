@@ -14,7 +14,7 @@ namespace ClassLibrary1
         //int CPU { get; set; }
         //long Memory { get; set; }
         //DateTime RunningTIme { get; set; }
-        DateTime StartTIme { get; set; }
+        public DateTime StartTIme { get; set; }
         //string Comment { get; set; }
 
         public ProcessingProgram()
