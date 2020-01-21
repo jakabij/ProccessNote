@@ -11,16 +11,16 @@ namespace ConsoleProcessNote
         DataManager manager = new DataManager();
         public void PrintMainMenu()
         {
-            string[] options = new string[] { "List all process [command: list]",
-                "Save all currently running process [command: save]"
-                , "Load saved data [command: load]","Find saved data by ID [command: find]", "Exit [command: exit]" };
+            string[] options = new string[] { "[command: list] to list all process",
+                "[command: save] to save all currently running process"
+                , "[command: load] load saved data","[command: find] find saved data by ID", "[command: exit] to exit" };
 
-            Console.WriteLine("/--------------------------------------------------\\");
+            Console.WriteLine("/--------------------------------------------------------\\");
             for(int count=0;count<options.Length;count++)
             {
-                Console.WriteLine("\t{0}: {1}",count+1,options[count]);
+                Console.WriteLine("\t{0}",options[count]);
             }
-            Console.WriteLine("/--------------------------------------------------\\");
+            Console.WriteLine("/--------------------------------------------------------\\");
         }
 
 
