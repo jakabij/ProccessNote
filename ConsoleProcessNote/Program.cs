@@ -28,19 +28,54 @@ namespace ConsoleProcessNote
             }
             else
             {
-                AllProcess allProcess = new AllProcess();
-                //List<ProcessingProgram> a = new List<ProcessingProgram>();
-                foreach (var process in Process.GetProcesses())
-                { 
-                    ProcessingProgram p = new ProcessingProgram(process);
-                    allProcess.ListOfProcesses.Add(p);
+                Menu menu = new Menu();
+                UI ui = new UI();
+                DataManager manager = new DataManager();
+
+                while (true)
+                {
+                    menu.PrintMainMenu();
+                    string input = ui.userInput("");
+
+
+                    if (input.Equals("list"))
+                    {
+                        ui.listAllProcess();
+                    }
+                    else if (input.Equals("save"))
+                    {
+                        AllProcess allProcess = new AllProcess();
+                        ui.toSaveData(allProcess);
+                        manager.WriteTOXml(allProcess.ListOfProcesses);
+                    }
+                    else if (input.Equals("load"))
+                    {
+                        try
+                        {
+                            List<ProcessingProgram> allProcesses = manager.ReadFromXml();
+                            ui.toLoadData(allProcesses);
+                        }
+                        catch (Exception e)
+                        {
+                            ui.errorMessage(e);
+                        }
+                    }
+                    else if (input.Equals("find"))
+                    {
+                        List<ProcessingProgram> allProcesses = manager.ReadFromXml();
+                        string searchedProcess=ui.userInput("The searched process' ID");
+                        ui.toFindData(searchedProcess, allProcesses);
+
+                        AllProcess allProcess = new AllProcess();
+                        ui.toSaveData(allProcess);
+                        manager.WriteTOXml(allProcess.ListOfProcesses);
+
+                    }
+                    else if (input.Equals("exit"))
+                    {
+                        break;
+                    }
                 }
-
-
-                    DataManager manager = new DataManager();
-                
-                manager.WriteTOXml(allProcess.ListOfProcesses);
-                manager.ReadFromXml();
             }
             
         }
