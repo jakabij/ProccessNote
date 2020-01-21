@@ -28,9 +28,18 @@ namespace ConsoleProcessNote
             }
             else
             {
-                DataManager manager = new DataManager();
+                AllProcess allProcess = new AllProcess();
+                //List<ProcessingProgram> a = new List<ProcessingProgram>();
+                foreach (var process in Process.GetProcesses())
+                { 
+                    ProcessingProgram p = new ProcessingProgram(process);
+                    allProcess.ListOfProcesses.Add(p);
+                }
+
+
+                    DataManager manager = new DataManager();
                 
-                manager.WriteTOXml(new AllProcess().ListOfProcesses);
+                manager.WriteTOXml(allProcess.ListOfProcesses);
                 manager.ReadFromXml();
             }
             
