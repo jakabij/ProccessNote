@@ -27,8 +27,8 @@ namespace WpfProcessNote
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ProcessingProgram p = new ProcessingProgram("sdfvg", 45);
-            Label1.Content = $"process name: {p.Name}, PID: {p.PID}";
+            //ProcessingProgram p = new ProcessingProgram("sdfvg", 45);
+            //Label1.Content = $"process name: {p.Name}, PID: {p.PID}";
         }
     }
 }

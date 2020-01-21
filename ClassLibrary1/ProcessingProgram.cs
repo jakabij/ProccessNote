@@ -11,22 +11,22 @@ namespace ClassLibrary1
     {
         public string Name { get; set; }
         public int PID { get; set; }
-        int CPU { get; set; }
-        long Memory { get; set; }
-        DateTime RunningTIme { get; set; }
+        //int CPU { get; set; }
+        //long Memory { get; set; }
+        //DateTime RunningTIme { get; set; }
         DateTime StartTIme { get; set; }
-        string Comment { get; set; }
+        //string Comment { get; set; }
 
         public ProcessingProgram()
         {
 
         }
-
-        public ProcessingProgram(string name,int pid)
+        
+        public ProcessingProgram(string name,int pid, DateTime startTime)
         {
             Name = name;
             PID = pid;
-          
+            StartTIme = startTime;
             
         }
 
@@ -34,7 +34,7 @@ namespace ClassLibrary1
         {
             info.AddValue("Name", Name);
             info.AddValue("ProcessID", PID);
-            
+            info.AddValue("StartTime", StartTIme);
             
         }
     }
