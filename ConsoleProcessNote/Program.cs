@@ -22,6 +22,7 @@ namespace ConsoleProcessNote
         {
             if (args.Length > 0)
             {
+                
                 Application app = new Application();
                 app.Run(new WpfProcessNote.MainWindow());
                 
