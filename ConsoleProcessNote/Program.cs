@@ -24,53 +24,15 @@ namespace ConsoleProcessNote
             {
                 Application app = new Application();
                 app.Run(new WpfProcessNote.MainWindow());
-                
             }
             else
             {
                 Menu menu = new Menu();
-                UI ui = new UI();
-                DataManager manager = new DataManager();
 
                 while (true)
                 {
                     menu.PrintMainMenu();
-                    string input = ui.userInput("");
-
-
-                    if (input.Equals("list"))
-                    {
-                        ui.listAllProcess();
-                    }
-                    else if (input.Equals("save"))
-                    {
-                        AllProcess allProcess = new AllProcess();
-                        ui.toSaveData(allProcess);
-                        manager.WriteTOXml(allProcess.ListOfProcesses);
-                    }
-                    else if (input.Equals("load"))
-                    {
-                        try
-                        {
-                            List<ProcessingProgram> allProcesses = manager.ReadFromXml();
-                            ui.toLoadData(allProcesses);
-                        }
-                        catch (Exception e)
-                        {
-                            ui.errorMessage(e);
-                        }
-                    }
-                    else if (input.Equals("find"))
-                    {
-                        List<ProcessingProgram> allProcesses = manager.ReadFromXml();
-                        string searchedProcess=ui.userInput("The searched process' ID");
-                        ui.toFindData(searchedProcess, allProcesses);
-
-                    }
-                    else if (input.Equals("exit"))
-                    {
-                        break;
-                    }
+                    menu.MenuOptions();
                 }
             }
             
