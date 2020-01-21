@@ -28,7 +28,7 @@ namespace ConsoleProcessNote
         {
             foreach(var process in Process.GetProcesses())
             {
-                Console.WriteLine(process.ProcessName);
+                Console.WriteLine(process.Id+": "+process.ProcessName);
             }
         }
 
