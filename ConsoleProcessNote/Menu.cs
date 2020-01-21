@@ -27,7 +27,7 @@ namespace ConsoleProcessNote
 
         public void MenuOptions()
         {
-            string input = ui.userInput("");
+            string input = ui.userInput("").ToLower();
 
             if (input.Equals("list"))
             {
