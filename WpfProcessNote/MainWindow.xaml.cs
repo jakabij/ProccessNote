@@ -23,12 +23,20 @@ namespace WpfProcessNote
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //ProcessingProgram p = new ProcessingProgram("sdfvg", 45);
             //Label1.Content = $"process name: {p.Name}, PID: {p.PID}";
+            DataManager data = new DataManager();
+            data.ReadFromXml();
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
