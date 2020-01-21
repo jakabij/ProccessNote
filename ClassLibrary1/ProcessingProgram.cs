@@ -34,8 +34,6 @@ namespace ClassLibrary1
         {
             info.AddValue("Name", Name);
             info.AddValue("ProcessID", PID);
-            
-            
         }
     }
 }

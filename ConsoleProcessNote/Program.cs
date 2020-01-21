@@ -29,7 +29,7 @@ namespace ConsoleProcessNote
             else
             {
                 DataManager manager = new DataManager();
-
+                
                 manager.WriteTOXml(new AllProcess().ListOfProcesses);
                 manager.ReadFromXml();
             }
