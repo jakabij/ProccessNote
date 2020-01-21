@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace DotNetProject
+namespace ClassLibrary1
 {
     public class AllProcess
     {
@@ -15,6 +15,7 @@ namespace DotNetProject
             {
                 ProcessingProgram program = new ProcessingProgram(process.ProcessName, process.Id);
                 ListOfProcesses.Add(program);
+                
             }
         }
     }

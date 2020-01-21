@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace DotNetProject
+namespace ClassLibrary1
 {
     public class DataManager
     {

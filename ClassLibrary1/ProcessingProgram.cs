@@ -4,7 +4,7 @@ using System.Text;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace DotNetProject
+namespace ClassLibrary1
 {
     [Serializable()]
     public class ProcessingProgram : ISerializable
@@ -12,7 +12,7 @@ namespace DotNetProject
         public string Name { get; set; }
         public int PID { get; set; }
         int CPU { get; set; }
-        int Memory { get; set; }
+        long Memory { get; set; }
         DateTime RunningTIme { get; set; }
         DateTime StartTIme { get; set; }
         string Comment { get; set; }
@@ -26,12 +26,16 @@ namespace DotNetProject
         {
             Name = name;
             PID = pid;
+          
+            
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("Name", Name);
             info.AddValue("ProcessID", PID);
+            
+            
         }
     }
 }

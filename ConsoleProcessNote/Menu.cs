@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DotNetProject
+namespace ConsoleProcessNote
 {
     class Menu
     {

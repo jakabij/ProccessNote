@@ -1,0 +1,15 @@
+﻿<Window x:Class="WpfProcessNote.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfProcessNote"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="86,76,0,0" VerticalAlignment="Top" Height="43" Width="97"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="83" Margin="498,76,0,0" VerticalAlignment="Top" Width="219" Click="Button_Click"/>
+        <Label x:Name="Label1" Content="Label" HorizontalAlignment="Left" Height="148" Margin="86,217,0,0" VerticalAlignment="Top" Width="588"/>
+
+    </Grid>
+</Window>
