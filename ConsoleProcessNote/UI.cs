@@ -70,6 +70,7 @@ namespace ConsoleProcessNote
                     }
                     DataManager manager = new DataManager();
                     manager.WriteTOXml(allProcesses);
+                    Console.WriteLine("Your comment saved succesfully!");
                     break;
                 }
             }
