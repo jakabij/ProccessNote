@@ -8,7 +8,8 @@ namespace ConsoleProcessNote
     {
         public void PrintMainMenu()
         {
-            string[] options = new string[] { "List all process", "Load saved data", "Exit" };
+            string[] options = new string[] { "List all process [command: list]","Save all currently running process [command: save]"
+                , "Load saved data [command: load]","Find saved data by ID [command: find]", "Exit [command: exit]" };
 
             Console.WriteLine("/--------------------------------------------------\\");
             for(int count=0;count<options.Length;count++)

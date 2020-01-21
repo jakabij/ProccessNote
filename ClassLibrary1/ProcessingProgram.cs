@@ -13,7 +13,7 @@ namespace ClassLibrary1
     {
         public string Name { get; set; }
         public int PID { get; set; }
-        public double CPU { get; set; }
+        //int CPU { get; set; }
         public long Memory { get; set; }
         public double RunningTime { get; set; }
         public DateTime StartTime { get; set; }
@@ -38,7 +38,8 @@ namespace ClassLibrary1
             }
             catch (Exception)
             {
-               
+                Console.WriteLine("no data");
+
             }
 
         }

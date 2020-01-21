@@ -22,7 +22,7 @@ namespace ClassLibrary1
         }
 
 
-        public void ReadFromXml()
+        public List<ProcessingProgram> ReadFromXml()
         {
             List<ProcessingProgram> read = new List<ProcessingProgram>();
             using (FileStream file = File.OpenRead(path))
@@ -30,10 +30,8 @@ namespace ClassLibrary1
                 read = (List<ProcessingProgram>)xml.Deserialize(file);
             }
 
-            foreach (var i in read)
-            {
-                Console.WriteLine(i.Name);
-            }
+            return read;
+            
         }
     }
 }
