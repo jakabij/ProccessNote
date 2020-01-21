@@ -66,10 +66,6 @@ namespace ConsoleProcessNote
                         string searchedProcess=ui.userInput("The searched process' ID");
                         ui.toFindData(searchedProcess, allProcesses);
 
-                        AllProcess allProcess = new AllProcess();
-                        ui.toSaveData(allProcess);
-                        manager.WriteTOXml(allProcess.ListOfProcesses);
-
                     }
                     else if (input.Equals("exit"))
                     {

@@ -68,6 +68,8 @@ namespace ConsoleProcessNote
                         string comment = userInput("");
                         process.Comment = comment;
                     }
+                    DataManager manager = new DataManager();
+                    manager.WriteTOXml(allProcesses);
                     break;
                 }
             }
