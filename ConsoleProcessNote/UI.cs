@@ -62,8 +62,8 @@ namespace ConsoleProcessNote
                         $"{process.StartTime}, total running time: {process.RunningTime}" +
                         $", Memory usage: {process.Memory}\nComment: {process.Comment}");
 
-                    string answer = userInput("Would you like to comment something to this?\n");
-                    if (answer.Equals("yes") || answer.Equals("Yes") || answer.Equals("YES")|| answer.Equals("y"))
+                    string answer = userInput("Would you like to comment something to this?\n").ToLower();
+                    if (answer.Equals("yes") || answer.Equals("y"))
                     {
                         string comment = userInput("");
                         process.Comment = comment;
