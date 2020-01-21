@@ -13,8 +13,19 @@ namespace ClassLibrary1
         {
             foreach (var process in Process.GetProcesses())
             {
-                ProcessingProgram program = new ProcessingProgram(process.ProcessName, process.Id);
-                ListOfProcesses.Add(program);
+                try
+                {
+                    
+                    ProcessingProgram program = new ProcessingProgram(process.ProcessName, process.Id, process.StartTime);
+                    ListOfProcesses.Add(program);
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("neeeeeeeeeeeee");
+                    
+                }
+                
+                
                 
             }
         }
