@@ -12,8 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ClassLibrary1;
-namespace WpfProcessNote
+
+namespace WpfSecondWindow
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -23,20 +23,6 @@ namespace WpfProcessNote
         public MainWindow()
         {
             InitializeComponent();
-            DataManager data = new DataManager();
-            data.ReadFromXml();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //ProcessingProgram p = new ProcessingProgram("sdfvg", 45);
-            //Label1.Content = $"process name: {p.Name}, PID: {p.PID}";
-            
-        }
-
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }
