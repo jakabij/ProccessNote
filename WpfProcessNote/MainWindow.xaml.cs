@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+//using Caliburn.Micro;
 using ClassLibrary1;
+
+
 namespace WpfProcessNote
 {
     /// <summary>
@@ -20,23 +24,39 @@ namespace WpfProcessNote
     /// </summary>
     public partial class MainWindow : Window
     {
+        //public BindableCollection<ProcessingProgram> Processes { get; set; }
         public MainWindow()
         {
             InitializeComponent();
-            DataManager data = new DataManager();
-            data.ReadFromXml();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //ProcessingProgram p = new ProcessingProgram("sdfvg", 45);
-            //Label1.Content = $"process name: {p.Name}, PID: {p.PID}";
+            
+            
             
         }
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void buttonList_Click(object sender, RoutedEventArgs e)
         {
+            AllProcess allProcess = new AllProcess();
+            
+            dataGrid1.ItemsSource = allProcess.ListOfProcesses;
+            foreach (var process in Process.GetProcesses())
+            {
+                ProcessingProgram p = new ProcessingProgram(process);
+                allProcess.ListOfProcesses.Add(p);
+            }
+            dataGrid1.Visibility = Visibility.Visible ;
+            //Processes = new BindableCollection<ProcessingProgram>(allProcess.ListOfProcesses);
+            
+        }
 
+        private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ProcessingProgram p = (ProcessingProgram)dataGrid1.SelectedItem;
+            if (p != null)
+            {
+                textCPU.Text = $"CPU usage:\n{p.CPU.ToString()}";
+                textMemory.Text = $"Memory usage:\n{p.Memory.ToString()}";
+                textStartTime.Text = $"Start Time:\n{p.StartTime.ToString()}";
+            }
         }
     }
 }

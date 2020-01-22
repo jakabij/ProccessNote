@@ -7,9 +7,15 @@
         xmlns:ClassLibrary1="clr-namespace:ClassLibrary1;assembly=ClassLibrary1" x:Class="WpfProcessNote.MainWindow"
         mc:Ignorable="d"
         Title="Process Manager" Height="768" Width="1366" FontFamily="Segoe UI Light" FontSize="18">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
@@ -26,13 +32,49 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="Hello"/>
-        <DataGrid x:Name="Processes"/>
+        <TextBlock Text="" Grid.Column="1" Grid.Row="1" Margin="0,0,0,80"/>
+        <Button x:Name="buttonList" Content="List processes" Grid.Column="1" Grid.Row="4" Margin="10" Click="buttonList_Click"/>
+        <Button x:Name="buttonTes5" Content="Button for something" Grid.Column="1" Grid.Row="8" Margin="10"/>
+        <TextBlock x:Name="textCPU" Background="Azure" Text="" Grid.Column="6" Grid.Row="5" Margin="20"/>
+        <TextBlock x:Name="textMemory" Background="Magenta" Text="" Grid.Column="6" Grid.Row="6" Margin="20"/>
+        <TextBlock x:Name="textStartTime" Background="Wheat" Text="" Grid.Column="6" Grid.Row="7" Margin="20"/>
+
+
+
+
+        <DataGrid 
+
+            x:Name="dataGrid1" 
+            AutoGenerateColumns="False"
+            Width="Auto" 
+            Height="Auto" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            Grid.Column="2" Grid.Row="1" ColumnWidth="auto" Grid.ColumnSpan="2" Grid.RowSpan="9"
+            IsReadOnly="True" 
+            AlternatingRowBackground="LightGray"
+            Visibility="Hidden"
+            CanUserAddRows="False" SelectionChanged="dataGrid1_SelectionChanged" >
+
+            <!--="{Binding AreAnyTouchesDirectlyOver, ElementName=dataGrid1, Mode=OneWay}" SelectionChanged="dataGrid1_SelectionChanged"> -->
+
+            <DataGrid.Columns>
+                <DataGridTextColumn  
+                            Binding="{Binding Path=Name}"
+                            Header="Name" 
+                            Width="Auto"  />
+                <DataGridTextColumn 
+                            Binding="{Binding Path=PID}"
+                            Header="PID"
+                            Width="Auto" />
+            </DataGrid.Columns>
+            
+            
+        </DataGrid>
 
     </Grid>
-    
+
 </Window>

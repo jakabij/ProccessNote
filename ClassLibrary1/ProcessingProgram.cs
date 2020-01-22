@@ -48,7 +48,7 @@ namespace ClassLibrary1
         {
             var startTime = DateTime.UtcNow;
             var startCpuUsage = Process.GetCurrentProcess().TotalProcessorTime;
-            await Task.Delay(30);
+            await Task.Delay(0);
 
             var endTime = DateTime.UtcNow;
             var endCpuUsage = Process.GetCurrentProcess().TotalProcessorTime;
