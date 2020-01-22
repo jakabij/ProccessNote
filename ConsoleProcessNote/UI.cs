@@ -28,7 +28,7 @@ namespace ConsoleProcessNote
         {
             foreach(var process in Process.GetProcesses())
             {
-                Console.WriteLine(process.ProcessName);
+                Console.WriteLine(process.Id+": "+process.ProcessName);
             }
         }
 
@@ -70,6 +70,7 @@ namespace ConsoleProcessNote
                     }
                     DataManager manager = new DataManager();
                     manager.WriteTOXml(allProcesses);
+                    Console.WriteLine("Your comment saved succesfully!");
                     break;
                 }
             }
