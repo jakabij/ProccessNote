@@ -13,35 +13,44 @@ namespace ClassLibrary1
     {
         public string Name { get; set; }
         public int PID { get; set; }
-        public double CPU { get; set; }
-        public long Memory { get; set; }
-        public double RunningTime { get; set; }
-        public DateTime StartTime { get; set; }
+        public string CPU { get; set; }
+        public string Memory { get; set; }
+        public string RunningTime { get; set; }
+        public string StartTime { get; set; }
         public string Comment { get; set; } = "";
 
         public ProcessingProgram()
-        { }
+        {
+        }
 
         public ProcessingProgram(Process process)
         {
-            
+            Name = process.ProcessName;
+            PID = process.Id;
+            var result = GetCpuUsageForProcess();
+            CPU = Math.Round(result.Result).ToString()+"%";
+            Memory = (process.PrivateMemorySize64/1000000).ToString()+" MB";
+
             try
             {
-                Name = process.ProcessName;
-                PID = process.Id;
-                var result = GetCpuUsageForProcess();
-                CPU = Math.Round(result.Result); 
-                Memory = process.PrivateMemorySize64;
-                StartTime = process.StartTime;
-                TimeSpan timeSpan = DateTime.Now.Subtract(StartTime);
-                RunningTime =Math.Round( timeSpan.TotalMinutes);
+                StartTime = process.StartTime.ToString();
+
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine("no data");
-
+                StartTime = "N/A";
             }
+                
 
+            try
+            {
+                TimeSpan timeSpan = DateTime.Now.Subtract(process.StartTime);
+                RunningTime = Math.Round(timeSpan.TotalMinutes).ToString()+" minute";
+            }
+            catch
+            {
+                RunningTime = "N/A";
+            }
         }
 
         public void refreshProcess(Process process)
