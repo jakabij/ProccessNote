@@ -54,7 +54,7 @@ namespace WpfProcessNote
             textMemory.Text = $"Memory usage:\n{p.Memory}";
             textStartTime.Text = $"Start Time:\n{p.StartTime}";
             textRunningTime.Text = $"Running Time: \n{p.RunningTime}";
-            textComment.Text = $"Comment:\n{p.Comment}";
+            textComment.Text = $"{p.Comment}";
         }
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
