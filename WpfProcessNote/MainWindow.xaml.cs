@@ -32,19 +32,6 @@ namespace WpfProcessNote
 
         }
 
-        private void buttonList_Click(object sender, RoutedEventArgs e)
-        {
-            AllProcess allProcess = new AllProcess();
-
-            dataGrid1.ItemsSource = allProcess.ListOfProcesses;
-            foreach (var process in Process.GetProcesses())
-            {
-                ProcessingProgram p = new ProcessingProgram(process);
-                allProcess.ListOfProcesses.Add(p);
-            }
-            dataGrid1.Visibility = Visibility.Visible;
-            dataGrid1.R
-        }
 
         /*
         private void dataGrid1_Selected(object sender, RoutedEventArgs e)

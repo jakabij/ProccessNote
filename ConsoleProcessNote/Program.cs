@@ -20,13 +20,12 @@ namespace ConsoleProcessNote
         [STAThread]
         static void Main(string[] args)
         {
-            if (args.Length > 0)
+            if (args[0].ToLower().Equals("window"))
             {
-                
                 Application app = new Application();
                 app.Run(new WpfProcessNote.MainWindow());
             }
-            else
+            else if(args.Length==0)
             {
                 Menu menu = new Menu();
 
@@ -35,8 +34,7 @@ namespace ConsoleProcessNote
                     menu.PrintMainMenu();
                     menu.MenuOptions();
                 }
-            }
-            
+            }         
         }
     }
 }
