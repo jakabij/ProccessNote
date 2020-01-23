@@ -35,45 +35,56 @@ namespace WpfProcessNote
         private void buttonList_Click(object sender, RoutedEventArgs e)
         {
             AllProcess allProcess = new AllProcess();
-            
+
             dataGrid1.ItemsSource = allProcess.ListOfProcesses;
             foreach (var process in Process.GetProcesses())
             {
                 ProcessingProgram p = new ProcessingProgram(process);
                 allProcess.ListOfProcesses.Add(p);
             }
-            dataGrid1.Visibility = Visibility.Visible ;
-            //Processes = new BindableCollection<ProcessingProgram>(allProcess.ListOfProcesses);
-            
+            dataGrid1.Visibility = Visibility.Visible;
         }
 
-        private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        /*
+        private void dataGrid1_Selected(object sender, RoutedEventArgs e)
         {
             ProcessingProgram p = (ProcessingProgram)dataGrid1.SelectedItem;
             if (p != null)
             {
-                textCPU.Text = $"CPU usage:\n{p.CPU.ToString()} %";
-                textMemory.Text = $"Memory usage:\n{(p.Memory / 1000000).ToString()} MB";
-                textStartTime.Text = $"Start Time:\n{p.StartTime.ToString()}";
-                textRunningTime.Text = $"Running Time: \n{p.RunningTime}";
+                .text = $"cpu usage:\n{p.CPU}";
+                textmemory.text = $"memory usage:\n{p.memory}";
+                textstarttime.text = $"start time:\n{p.starttime}";
+                textrunningtime.text = $"running time: \n{p.runningtime}";
             }
         }
-
-        private void dataGrid1_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        */
+        /*private void datagrid1_selectionchanged(object sender, SelectionChangedEventArgs e)
         {
             ProcessingProgram p = (ProcessingProgram)dataGrid1.SelectedItem;
-            
+            if (p != null)
+            {
+                .text = $"cpu usage:\n{p.CPU}";
+                textmemory.text = $"memory usage:\n{p.memory}";
+                textstarttime.text = $"start time:\n{p.starttime}";
+                textrunningtime.text = $"running time: \n{p.runningtime}";
+            }
         }
-
-        //private void dataGrid1_Selected(object sender, RoutedEventArgs e)
+              */
+        //private void dataGrid1_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         //{
         //    ProcessingProgram p = (ProcessingProgram)dataGrid1.SelectedItem;
-        //    if (p != null)
-        //    {
-        //        textCPU.Text = $"CPU usage:\n{p.CPU.ToString()} %";
-        //        textMemory.Text = $"Memory usage:\n{(p.Memory / 1000000).ToString()} MB";
-        //        textStartTime.Text = $"Start Time:\n{p.StartTime.ToString()}";
-        //    }
+
         //}
+
+        ////private void dataGrid1_Selected(object sender, RoutedEventArgs e)
+        ////{
+        ////    ProcessingProgram p = (ProcessingProgram)dataGrid1.SelectedItem;
+        ////    if (p != null)
+        ////    {
+        ////        textCPU.Text = $"CPU usage:\n{p.CPU.ToString()} %";
+        ////        textMemory.Text = $"Memory usage:\n{(p.Memory / 1000000).ToString()} MB";
+        ////        textStartTime.Text = $"Start Time:\n{p.StartTime.ToString()}";
+        ////    }
+        ////}
     }
 }
