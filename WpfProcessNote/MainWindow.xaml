@@ -40,9 +40,8 @@
                     Visibility="Hidden"
                     CanUserAddRows="False" 
                     MinRowHeight="9" Margin="10,10,0,10"
-                    
                     >
-
+                    
 
                     <!--
                     
@@ -53,7 +52,7 @@
                         <DataGridTextColumn  
                                 Binding="{Binding Path=Name }"
                                 Header="Name" 
-                                Width="Auto"  />
+                                Width="Auto"/>
                         <DataGridTextColumn 
                                 Binding="{Binding Path=PID}"
                                 Header="PID"

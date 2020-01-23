@@ -43,6 +43,7 @@ namespace WpfProcessNote
                 allProcess.ListOfProcesses.Add(p);
             }
             dataGrid1.Visibility = Visibility.Visible;
+            dataGrid1.R
         }
 
         /*
