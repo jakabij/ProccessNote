@@ -53,7 +53,37 @@ namespace ClassLibrary1
             }
         }
 
-       
+        public void refreshProcess(ProcessingProgram p)
+        {
+            Process process = Process.GetProcessById(p.PID);
+            var result = GetCpuUsageForProcess();
+            p.CPU = Math.Round(result.Result).ToString() + "%";
+            p.Memory = (process.PrivateMemorySize64 / 1000000).ToString() + " MB";
+
+            try
+            {
+                p.StartTime = process.StartTime.ToString();
+
+            }
+            catch (Exception e)
+            {
+                p.StartTime = "N/A";
+            }
+
+
+            try
+            {
+                TimeSpan timeSpan = DateTime.Now.Subtract(process.StartTime);
+                p.RunningTime = Math.Round(timeSpan.TotalMinutes).ToString() + " minute";
+            }
+            catch
+            {
+                p.RunningTime = "N/A";
+            }
+            
+        }
+
+        
         private async Task<double> GetCpuUsageForProcess()
         {
             var startTime = DateTime.UtcNow;

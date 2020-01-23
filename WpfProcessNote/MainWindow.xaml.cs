@@ -52,26 +52,44 @@ namespace WpfProcessNote
             ProcessingProgram p = (ProcessingProgram)dataGrid1.SelectedItem;
             if (p != null)
             {
-                .text = $"cpu usage:\n{p.CPU}";
-                textmemory.text = $"memory usage:\n{p.memory}";
-                textstarttime.text = $"start time:\n{p.starttime}";
-                textrunningtime.text = $"running time: \n{p.runningtime}";
+                textCPU.Text = $"CPU usage:\n{p.CPU}";
+                textMemory.Text = $"Memory usage:\n{p.Memory}";
+                textStartTime.Text = $"Start Time:\n{p.StartTime}";
+                textRunningTime.Text = $"Running Time: \n{p.RunningTime}";
             }
         }
         */
         /*private void datagrid1_selectionchanged(object sender, SelectionChangedEventArgs e)
         {
             ProcessingProgram p = (ProcessingProgram)dataGrid1.SelectedItem;
-            if (p != null)
-            {
-                .text = $"cpu usage:\n{p.CPU}";
-                textmemory.text = $"memory usage:\n{p.memory}";
-                textstarttime.text = $"start time:\n{p.starttime}";
-                textrunningtime.text = $"running time: \n{p.runningtime}";
-            }
+            p.refreshProcess(p);
+            textCPU.Text = $"CPU usage:\n{p.CPU}";
+            textMemory.Text = $"Memory usage:\n{p.Memory}";
+            textStartTime.Text = $"Start Time:\n{p.StartTime}";
+            textRunningTime.Text = $"Running Time: \n{p.RunningTime}";
+            textComment.Text = $"Comment:\n{p.Comment}";
         }
-              */
-        //private void dataGrid1_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+
+        private void buttonSave_Click(object sender, RoutedEventArgs e)
+        {
+            
+            DataManager dataManager = new DataManager();
+            dataManager.WriteTOXml((List<ProcessingProgram>)dataGrid1.ItemsSource);
+            MessageBox.Show("List succesfully saved.");
+            CommentBox.Text = "";
+        }
+
+        private void buttonAddComment_Click(object sender, RoutedEventArgs e)
+        {
+            ProcessingProgram p = (ProcessingProgram)dataGrid1.SelectedItem;
+            Utility.AddComent(p, CommentBox.Text);
+            MessageBox.Show("Comment added.");
+            CommentBox.Text = "";
+        }
+
+
+
+        //private void dataGrid1_Selected(object sender, RoutedEventArgs e)
         //{
         //    ProcessingProgram p = (ProcessingProgram)dataGrid1.SelectedItem;
 
