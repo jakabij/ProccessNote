@@ -87,17 +87,16 @@
 
             <!--="{Binding AreAnyTouchesDirectlyOver, ElementName=dataGrid1, Mode=OneWay}" SelectionChanged="dataGrid1_SelectionChanged"> -->
 
-            <!--
-                <DataGrid.Columns>
-                    <DataGridTextColumn  
-                                Binding="{Binding Path=Name}"
-                                Header="Name" 
-                                Width="Auto"  />
-                    <DataGridTextColumn 
-                                Binding="{Binding Path=PID}"
-                                Header="PID"
-                                Width="Auto" />
-                </DataGrid.Columns>
+            <DataGrid.Columns>
+                <DataGridTextColumn  
+                            Binding="{Binding Path=Name}"
+                            Header="Name" 
+                            Width="Auto"  />
+                <DataGridTextColumn 
+                            Binding="{Binding Path=PID}"
+                            Header="PID"
+                            Width="Auto" />
+            </DataGrid.Columns>
             
             
         </DataGrid>
