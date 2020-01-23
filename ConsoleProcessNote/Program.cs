@@ -22,9 +22,16 @@ namespace ConsoleProcessNote
         {
             if (args.Length > 0)
             {
-                
-                Application app = new Application();
-                app.Run(new WpfProcessNote.MainWindow());
+                if(args[1].ToLower().Equals("window"))
+                { 
+                    Application app = new Application();
+                    app.Run(new WpfProcessNote.MainWindow());
+                }
+                else
+                {
+                    UI ui = new UI();
+                    ui.wrongArgument("Not valid argument!");
+                }
             }
             else
             {
