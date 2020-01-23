@@ -6,48 +6,72 @@
         xmlns:local="clr-namespace:WpfProcessNote"
         xmlns:ClassLibrary1="clr-namespace:ClassLibrary1;assembly=ClassLibrary1" x:Class="WpfProcessNote.MainWindow"
         mc:Ignorable="d"
-        Title="Process Manager" Height="768" Width="1366" FontFamily="Segoe UI Light" FontSize="18">
-
+        Title="Process Manager" Height="700" Width="1100" FontFamily="Segoe UI Light" FontSize="18"
+        >
+    
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
+           
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Text="" Grid.Column="1" Grid.Row="1" Margin="0,0,0,80"/>
-        <Button x:Name="buttonList" Content="List processes" Grid.Column="1" Grid.Row="4" Margin="10" Click="buttonList_Click"/>
-        <Button x:Name="buttonTes5" Content="Button for something" Grid.Column="1" Grid.Row="8" Margin="10"/>
-        <TextBlock x:Name="textCPU" Background="Honeydew" Text="" Grid.Column="6" Grid.Row="5" Margin="20" FontSize="24" FontWeight="Bold"/>
-        <TextBlock x:Name="textMemory" Background="LightBlue" Text="" Grid.Column="6" Grid.Row="6" Margin="20" FontSize="24" FontWeight="Bold"/>
-        <TextBlock x:Name="textStartTime" Background="Wheat" Text="" Grid.Column="6" Grid.Row="7" Margin="20" FontSize="24" FontWeight="Bold"/>
-        <TextBlock x:Name="textRunningTime" Background="Wheat" Text="" Grid.Column="6" Grid.Row="8" Margin="20" FontSize="24" FontWeight="Bold"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <GroupBox Header="Menu" Grid.Row="0" Grid.Column="0">
+            <StackPanel>
+            <Button x:Name="buttonList" Content="List processes" Margin="10" Click="buttonList_Click"/>
+            <Button x:Name="buttonLoad" Content="Load" Margin="10"/>
+            <TextBox x:Name="CommentBox"  Margin="10" MaxWidth="360"/>
+            <Button x:Name="buttonAddComment" Content="Add Comment" Margin="10" Click="buttonAddComment_Click" />
+            <Button x:Name="buttonSave" Content="Save to XML" Margin="10" Click="buttonSave_Click" />
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Info" Grid.Row="1" Grid.Column="0">
+            <StackPanel >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
 
-        <TextBox x:Name="CommentBox" Grid.Column="6" Grid.Row="2" Margin="10"/>
+                    <TextBlock x:Name="textCPU" Background="Honeydew" Text="CPU usage:" Grid.Column="0" Grid.Row="0" Margin="20" FontSize="24" FontWeight="Bold"/>
+                    <TextBlock x:Name="textMemory" Background="LightBlue" Text="Memory usage:" Grid.Column="0" Grid.Row="1"  Margin="20" FontSize="24" FontWeight="Bold"/>
+                    <TextBlock x:Name="textStartTime" Background="Wheat" Text="Start Time:" Grid.Column="1" Grid.Row="0" Margin="20" FontSize="24" FontWeight="Bold"/>
+                    <TextBlock x:Name="textRunningTime" Background="Wheat" Text="Running Time:" Grid.Column="1" Grid.Row="1" Margin="20" FontSize="24" FontWeight="Bold"/>
 
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Comment" Grid.Row="2" Grid.Column="0">
+            <StackPanel >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="360"/>
+                    </Grid.ColumnDefinitions>
 
+                    <TextBlock x:Name="textComment" Background="Wheat" Text="" Grid.Column="0"  Grid.Row="2"  Margin="20" FontSize="24" FontWeight="Bold"/>
 
-        <DataGrid 
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="Info2" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="10">
+            <DataGrid 
 
             x:Name="dataGrid1" 
             AutoGenerateColumns="False"
@@ -55,7 +79,7 @@
             Height="Auto" 
             HorizontalAlignment="Center" 
             VerticalAlignment="Center" 
-            Grid.Column="2" Grid.Row="1" ColumnWidth="auto" Grid.ColumnSpan="2" Grid.RowSpan="9"
+            Grid.Column="2" Grid.Row="1" ColumnWidth="auto" Grid.ColumnSpan="2" Grid.RowSpan="5"
             IsReadOnly="True" 
             AlternatingRowBackground="LightGray"
             Visibility="Hidden"
@@ -76,6 +100,9 @@
             
             
         </DataGrid>
+            
+         </GroupBox>   
+        
 
     </Grid>
 

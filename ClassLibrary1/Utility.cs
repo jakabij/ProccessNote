@@ -4,9 +4,9 @@ using System.Text;
 
 namespace ClassLibrary1
 {
-    class Utility
+    public class Utility
     {
-        public void AddComent(ProcessingProgram program,string comment)
+        public static void AddComent(ProcessingProgram program,string comment)
         {
             program.Comment = comment;
         }

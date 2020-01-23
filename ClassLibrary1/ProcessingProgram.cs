@@ -53,27 +53,37 @@ namespace ClassLibrary1
             }
         }
 
-        public void refreshProcess(Process process)
+        public void refreshProcess(ProcessingProgram p)
         {
+            Process process = Process.GetProcessById(p.PID);
+            var result = GetCpuUsageForProcess();
+            p.CPU = Math.Round(result.Result).ToString() + "%";
+            p.Memory = (process.PrivateMemorySize64 / 1000000).ToString() + " MB";
 
             try
             {
-                Name = process.ProcessName;
-                PID = process.Id;
-                var result = GetCpuUsageForProcess();
-                CPU = Math.Round(result.Result);
-                Memory = process.PrivateMemorySize64;
-                StartTime = process.StartTime;
-                TimeSpan timeSpan = DateTime.Now.Subtract(StartTime);
-                RunningTime = Math.Round(timeSpan.TotalMinutes);
+                p.StartTime = process.StartTime.ToString();
+
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine("no data");
-
+                p.StartTime = "N/A";
             }
 
+
+            try
+            {
+                TimeSpan timeSpan = DateTime.Now.Subtract(process.StartTime);
+                p.RunningTime = Math.Round(timeSpan.TotalMinutes).ToString() + " minute";
+            }
+            catch
+            {
+                p.RunningTime = "N/A";
+            }
+            
         }
+
+        
         private async Task<double> GetCpuUsageForProcess()
         {
             var startTime = DateTime.UtcNow;
