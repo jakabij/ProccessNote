@@ -22,7 +22,7 @@ namespace ClassLibrary1
         public ProcessingProgram()
         { }
 
-            public ProcessingProgram(Process process)
+        public ProcessingProgram(Process process)
         {
             
             try
@@ -44,6 +44,27 @@ namespace ClassLibrary1
 
         }
 
+        public void refreshProcess(Process process)
+        {
+
+            try
+            {
+                Name = process.ProcessName;
+                PID = process.Id;
+                var result = GetCpuUsageForProcess();
+                CPU = Math.Round(result.Result);
+                Memory = process.PrivateMemorySize64;
+                StartTime = process.StartTime;
+                TimeSpan timeSpan = DateTime.Now.Subtract(StartTime);
+                RunningTime = Math.Round(timeSpan.TotalMinutes);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("no data");
+
+            }
+
+        }
         private async Task<double> GetCpuUsageForProcess()
         {
             var startTime = DateTime.UtcNow;

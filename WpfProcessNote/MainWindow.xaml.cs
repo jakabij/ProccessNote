@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -29,8 +29,7 @@ namespace WpfProcessNote
         {
             InitializeComponent();
             
-            
-            
+
         }
 
         private void buttonList_Click(object sender, RoutedEventArgs e)
@@ -53,10 +52,28 @@ namespace WpfProcessNote
             ProcessingProgram p = (ProcessingProgram)dataGrid1.SelectedItem;
             if (p != null)
             {
-                textCPU.Text = $"CPU usage:\n{p.CPU.ToString()}";
-                textMemory.Text = $"Memory usage:\n{p.Memory.ToString()}";
+                textCPU.Text = $"CPU usage:\n{p.CPU.ToString()} %";
+                textMemory.Text = $"Memory usage:\n{(p.Memory / 1000000).ToString()} MB";
                 textStartTime.Text = $"Start Time:\n{p.StartTime.ToString()}";
+                textRunningTime.Text = $"Running Time: \n{p.RunningTime}";
             }
         }
+
+        private void dataGrid1_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ProcessingProgram p = (ProcessingProgram)dataGrid1.SelectedItem;
+            
+        }
+
+        //private void dataGrid1_Selected(object sender, RoutedEventArgs e)
+        //{
+        //    ProcessingProgram p = (ProcessingProgram)dataGrid1.SelectedItem;
+        //    if (p != null)
+        //    {
+        //        textCPU.Text = $"CPU usage:\n{p.CPU.ToString()} %";
+        //        textMemory.Text = $"Memory usage:\n{(p.Memory / 1000000).ToString()} MB";
+        //        textStartTime.Text = $"Start Time:\n{p.StartTime.ToString()}";
+        //    }
+        //}
     }
 }
