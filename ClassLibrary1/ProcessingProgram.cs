@@ -36,7 +36,7 @@ namespace ClassLibrary1
                 StartTime = process.StartTime.ToString();
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 StartTime = "N/A";
             }
@@ -65,7 +65,7 @@ namespace ClassLibrary1
                 p.StartTime = process.StartTime.ToString();
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 p.StartTime = "N/A";
             }

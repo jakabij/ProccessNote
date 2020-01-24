@@ -71,17 +71,34 @@ namespace WpfProcessNote
         {
             
             DataManager dataManager = new DataManager();
-            dataManager.WriteTOXml((List<ProcessingProgram>)dataGrid1.ItemsSource);
-            MessageBox.Show("List succesfully saved.");
-            CommentBox.Text = "";
+            if ((List<ProcessingProgram>)dataGrid1.ItemsSource != null)
+            {
+                dataManager.WriteTOXml((List<ProcessingProgram>)dataGrid1.ItemsSource);
+                MessageBox.Show("List succesfully saved.");
+                CommentBox.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Nothing to save!");
+            }
         }
 
         private void buttonAddComment_Click(object sender, RoutedEventArgs e)
         {
-            ProcessingProgram p = (ProcessingProgram)dataGrid1.SelectedItem;
-            Utility.AddComent(p, CommentBox.Text);
-            MessageBox.Show("Comment added.");
-            CommentBox.Text = "";
+            try
+            { 
+                ProcessingProgram p = (ProcessingProgram)dataGrid1.SelectedItem;
+                Utility.AddComent(p, CommentBox.Text);
+                MessageBox.Show("Comment added.");
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("You have to select an item first!");
+            }
+            finally
+            {
+                CommentBox.Text = "";
+            }
         }
 
         private void buttonLoad_Click(object sender, RoutedEventArgs e)
