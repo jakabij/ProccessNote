@@ -15,7 +15,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ClassLibrary1;
 
-
 namespace WpfProcessNote
 {
     /// <summary>
@@ -23,7 +22,7 @@ namespace WpfProcessNote
     /// </summary>
     public partial class MainWindow : Window
     {
-        //public BindableCollection<ProcessingProgram> Processes { get; set; }
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -42,7 +41,6 @@ namespace WpfProcessNote
                 allProcess.ListOfProcesses.Add(p);
             }
             dataGrid1.Visibility = Visibility.Visible ;
-            //Processes = new BindableCollection<ProcessingProgram>(allProcess.ListOfProcesses);
             
         }
 
@@ -86,17 +84,14 @@ namespace WpfProcessNote
             CommentBox.Text = "";
         }
 
-
-
-        //private void dataGrid1_Selected(object sender, RoutedEventArgs e)
-        //{
-        //    ProcessingProgram p = (ProcessingProgram)dataGrid1.SelectedItem;
-        //    if (p != null)
-        //    {
-        //        textCPU.Text = $"CPU usage:\n{p.CPU.ToString()} %";
-        //        textMemory.Text = $"Memory usage:\n{(p.Memory / 1000000).ToString()} MB";
-        //        textStartTime.Text = $"Start Time:\n{p.StartTime.ToString()}";
-        //    }
-        //}
+        private void buttonLoad_Click(object sender, RoutedEventArgs e)
+        {
+            AllProcess allProcess = new AllProcess();
+            DataManager dataManager = new DataManager();
+            
+            dataGrid1.ItemsSource = dataManager.ReadFromXml();
+            dataGrid1.Visibility = Visibility.Visible;
+        }
+        
     }
 }

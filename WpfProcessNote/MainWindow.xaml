@@ -6,29 +6,27 @@
         xmlns:local="clr-namespace:WpfProcessNote"
         xmlns:ClassLibrary1="clr-namespace:ClassLibrary1;assembly=ClassLibrary1" x:Class="WpfProcessNote.MainWindow"
         mc:Ignorable="d"
-        Title="Process Manager" Height="700" Width="1100" FontFamily="Segoe UI Light" FontSize="18"
+        Title="Process Manager" Height="800" Width="1200" FontFamily="Segoe UI Light" FontSize="18"
         >
-    
+    <Border Padding="20">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto"/>
+             <RowDefinition Height="*"/>
            
-            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="450"/>
+            <ColumnDefinition Width="620"/>
+            
         </Grid.ColumnDefinitions>
         
         <GroupBox Header="Menu" Grid.Row="0" Grid.Column="0">
             <StackPanel>
             <Button x:Name="buttonList" Content="List processes" Margin="10" Click="buttonList_Click"/>
-            <Button x:Name="buttonLoad" Content="Load" Margin="10"/>
-            <TextBox x:Name="CommentBox"  Margin="10" MaxWidth="360"/>
+            <Button x:Name="buttonLoad" Content="Load" Margin="10" Click="buttonLoad_Click"/>
+            <TextBox x:Name="CommentBox"  Margin="10" MaxWidth="420"/>
             <Button x:Name="buttonAddComment" Content="Add Comment" Margin="10" Click="buttonAddComment_Click" />
             <Button x:Name="buttonSave" Content="Save to XML" Margin="10" Click="buttonSave_Click" />
             </StackPanel>
@@ -54,14 +52,14 @@
                 </Grid>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="Comment" Grid.Row="2" Grid.Column="0">
+        <GroupBox Header="Comment" Grid.Row="2" Grid.Column="0" Margin="0,0,0,10">
             <StackPanel >
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="360"/>
+                        <ColumnDefinition Width="400"/>
                     </Grid.ColumnDefinitions>
 
                     <TextBlock x:Name="textComment" Background="Wheat" Text="" Grid.Column="0"  Grid.Row="2"  Margin="20" FontSize="24" FontWeight="Bold"/>
@@ -91,7 +89,7 @@
                 <DataGridTextColumn  
                             Binding="{Binding Path=Name}"
                             Header="Name" 
-                            Width="Auto"  />
+                            Width="520"  />
                 <DataGridTextColumn 
                             Binding="{Binding Path=PID}"
                             Header="PID"
@@ -105,5 +103,5 @@
         
 
     </Grid>
-
+    </Border>
 </Window>
