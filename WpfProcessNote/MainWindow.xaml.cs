@@ -14,9 +14,9 @@ namespace WpfProcessNote
     /// </summary>
     public partial class MainWindow : Window
     {
-        DispatcherTimer onlineModeTimer;
+        DispatcherTimer onlineModeTimer = new DispatcherTimer();
         ProcessingProgram processingProgram;
-        int i = 0;
+        bool processesListed = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -25,6 +25,7 @@ namespace WpfProcessNote
         private void buttonList_Click(object sender, RoutedEventArgs e)
         {
             AllProcess allProcess = new AllProcess();
+            processesListed = true;
 
             dataGrid1.ItemsSource = allProcess.ListOfProcesses;
             foreach (var process in Process.GetProcesses())
@@ -104,17 +105,23 @@ namespace WpfProcessNote
 
         private void toggleOnlineMode_Check(object sender, RoutedEventArgs e)
         {
-            if (toggleOnlineMode.IsChecked == true)
+            if (processesListed)
             {
-                onlineModeTimer = new DispatcherTimer();
                 onlineModeTimer.Interval = new TimeSpan(0, 0, 1);
                 onlineModeTimer.Tick += onlineModeTimer_Tick;
                 onlineModeTimer.Start();
             }
             else
             {
-                onlineModeTimer.Stop();
+                MessageBox.Show("List processes first!", "Warning");
+                toggleOnlineMode.IsChecked = false;
             }
+        }
+
+        private void toggleOnlineMode_Uncheck(object sender, RoutedEventArgs e)
+        {
+            if (onlineModeTimer.IsEnabled == true)
+                onlineModeTimer.Stop();
         }
 
         private void onlineModeTimer_Tick(object sender, EventArgs e)
