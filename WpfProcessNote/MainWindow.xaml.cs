@@ -24,17 +24,23 @@ namespace WpfProcessNote
 
         private void buttonList_Click(object sender, RoutedEventArgs e)
         {
-            AllProcess allProcess = new AllProcess();
-            processesListed = true;
-
-            dataGrid1.ItemsSource = allProcess.ListOfProcesses;
-            foreach (var process in Process.GetProcesses())
+            if (!onlineModeTimer.IsEnabled)
             {
-                processingProgram = new ProcessingProgram(process);
-                allProcess.ListOfProcesses.Add(processingProgram);
-            }
-            dataGrid1.Visibility = Visibility.Visible;
+                AllProcess allProcess = new AllProcess();
+                processesListed = true;
 
+                dataGrid1.ItemsSource = allProcess.ListOfProcesses;
+                foreach (var process in Process.GetProcesses())
+                {
+                    processingProgram = new ProcessingProgram(process);
+                    allProcess.ListOfProcesses.Add(processingProgram);
+                }
+                dataGrid1.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MessageBox.Show("Turn off online mode first!", "Warning");
+            }
         }
 
         private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
