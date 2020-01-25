@@ -28,8 +28,8 @@ namespace ClassLibrary1
             Name = process.ProcessName;
             PID = process.Id;
             var result = GetCpuUsageForProcess();
-            CPU = Math.Round(result.Result).ToString()+"%";
-            Memory = (process.PrivateMemorySize64/1000000).ToString()+" MB";
+            CPU = Math.Round(result.Result).ToString() + "%";
+            Memory = (process.PrivateMemorySize64 / 1000000).ToString() + " MB";
 
             try
             {
@@ -40,12 +40,12 @@ namespace ClassLibrary1
             {
                 StartTime = "N/A";
             }
-                
+
 
             try
             {
                 TimeSpan timeSpan = DateTime.Now.Subtract(process.StartTime);
-                RunningTime = Math.Round(timeSpan.TotalMinutes).ToString()+" minute";
+                RunningTime = Math.Round(timeSpan.TotalMinutes).ToString() + " minute";
             }
             catch
             {
@@ -80,10 +80,10 @@ namespace ClassLibrary1
             {
                 p.RunningTime = "N/A";
             }
-            
+
         }
 
-        
+
         private async Task<double> GetCpuUsageForProcess()
         {
             var startTime = DateTime.UtcNow;

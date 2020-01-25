@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 using ClassLibrary1;
 
 namespace WpfProcessNote
@@ -22,54 +14,54 @@ namespace WpfProcessNote
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        DispatcherTimer onlineModeTimer;
+        ProcessingProgram processingProgram;
+        int i = 0;
         public MainWindow()
         {
             InitializeComponent();
-            
-
         }
 
         private void buttonList_Click(object sender, RoutedEventArgs e)
         {
             AllProcess allProcess = new AllProcess();
-            
+
             dataGrid1.ItemsSource = allProcess.ListOfProcesses;
             foreach (var process in Process.GetProcesses())
             {
-                ProcessingProgram p = new ProcessingProgram(process);
-                allProcess.ListOfProcesses.Add(p);
+                processingProgram = new ProcessingProgram(process);
+                allProcess.ListOfProcesses.Add(processingProgram);
             }
-            dataGrid1.Visibility = Visibility.Visible ;
-            
+            dataGrid1.Visibility = Visibility.Visible;
+
         }
 
         private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ProcessingProgram p = (ProcessingProgram)dataGrid1.SelectedItem;
-            if (p != null)
+            processingProgram = (ProcessingProgram)dataGrid1.SelectedItem;
+            if (processingProgram != null)
             {
-                textCPU.Text = $"CPU usage:\n{p.CPU}";
-                textMemory.Text = $"Memory usage:\n{p.Memory}";
-                textStartTime.Text = $"Start Time:\n{p.StartTime}";
-                textRunningTime.Text = $"Running Time: \n{p.RunningTime}";
+                textCPU.Text = $"CPU usage:\n{processingProgram.CPU}";
+                textMemory.Text = $"Memory usage:\n{processingProgram.Memory}";
+                textStartTime.Text = $"Start Time:\n{processingProgram.StartTime}";
+                textRunningTime.Text = $"Running Time: \n{processingProgram.RunningTime}";
             }
         }
 
         private void dataGrid1_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ProcessingProgram p = (ProcessingProgram)dataGrid1.SelectedItem;
-            p.refreshProcess(p);
-            textCPU.Text = $"CPU usage:\n{p.CPU}";
-            textMemory.Text = $"Memory usage:\n{p.Memory}";
-            textStartTime.Text = $"Start Time:\n{p.StartTime}";
-            textRunningTime.Text = $"Running Time: \n{p.RunningTime}";
-            textComment.Text = $"{p.Comment}";
+            processingProgram = (ProcessingProgram)dataGrid1.SelectedItem;
+            processingProgram.refreshProcess(processingProgram);
+            textCPU.Text = $"CPU usage:\n{processingProgram.CPU}";
+            textMemory.Text = $"Memory usage:\n{processingProgram.Memory}";
+            textStartTime.Text = $"Start Time:\n{processingProgram.StartTime}";
+            textRunningTime.Text = $"Running Time: \n{processingProgram.RunningTime}";
+            textComment.Text = $"{processingProgram.Comment}";
         }
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
-            
+
             DataManager dataManager = new DataManager();
             if ((List<ProcessingProgram>)dataGrid1.ItemsSource != null)
             {
@@ -86,12 +78,12 @@ namespace WpfProcessNote
         private void buttonAddComment_Click(object sender, RoutedEventArgs e)
         {
             try
-            { 
-                ProcessingProgram p = (ProcessingProgram)dataGrid1.SelectedItem;
-                Utility.AddComent(p, CommentBox.Text);
+            {
+                processingProgram = (ProcessingProgram)dataGrid1.SelectedItem;
+                Utility.AddComent(processingProgram, CommentBox.Text);
                 MessageBox.Show("Comment added.");
             }
-            catch(Exception)
+            catch (Exception)
             {
                 MessageBox.Show("You have to select an item first!");
             }
@@ -105,10 +97,49 @@ namespace WpfProcessNote
         {
             AllProcess allProcess = new AllProcess();
             DataManager dataManager = new DataManager();
-            
+
             dataGrid1.ItemsSource = dataManager.ReadFromXml();
             dataGrid1.Visibility = Visibility.Visible;
         }
-        
+
+        private void toggleOnlineMode_Check(object sender, RoutedEventArgs e)
+        {
+            if (toggleOnlineMode.IsChecked == true)
+            {
+                onlineModeTimer = new DispatcherTimer();
+                onlineModeTimer.Interval = new TimeSpan(0, 0, 1);
+                onlineModeTimer.Tick += onlineModeTimer_Tick;
+                onlineModeTimer.Start();
+            }
+            else
+            {
+                onlineModeTimer.Stop();
+            }
+        }
+
+        private void onlineModeTimer_Tick(object sender, EventArgs e)
+        {
+            processingProgram.refreshProcess(processingProgram);
+
+            textCPU.Text = $"CPU usage:\n{processingProgram.CPU}";
+            textMemory.Text = $"Memory usage:\n{processingProgram.Memory}";
+            textStartTime.Text = $"Start Time:\n{processingProgram.StartTime}";
+            textRunningTime.Text = $"Running Time: \n{processingProgram.RunningTime}";
+            textComment.Text = $"{processingProgram.Comment}";
+            /* textComment.Text = $"{i}";
+            i++; */
+        }
+
+        private void checkboxAlwaysOnTop_Check(object sender, RoutedEventArgs e)
+        {
+            if (checkBoxAlwaysOnTop.IsChecked == true)
+            {
+                Topmost = true;
+            }
+            else
+            {
+                Topmost = false;
+            }
+        }
     }
 }
